@@ -1,0 +1,3 @@
+D:\Ворд документы\Системное программирование\Лабы\laba14\laba14\Debug\laba14.vcxprojAssemblyReference.cache
+D:\Ворд документы\Системное программирование\Лабы\laba14\laba14\Debug\laba14.MyForm.resources
+D:\Ворд документы\Системное программирование\Лабы\laba14\laba14\Debug\laba14.vcxproj.GenerateResource.cache
