@@ -13,7 +13,7 @@ int main()
     DWORD m;
     int len = 0;
     int size = 0;
-    char cBuffer[1024] = { 0 };
+    char cBuffer[1026] = { 0 };
     string text;
     fstream file("test.txt");
     
