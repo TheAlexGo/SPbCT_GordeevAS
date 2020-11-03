@@ -1,7 +1,6 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include "windows.h"
-#include "Tchar.h"
 #include <fstream>
 #include <locale.h>
 
@@ -15,9 +14,8 @@ int main()
     int size = 0;
     char cBuffer[1026] = { 0 };
     string text;
-    fstream file("../../test.txt");
-    
-    
+    fstream file("passwd/test.txt");
+
     setlocale(LC_ALL, "Russian");
 
     file1 = CreateFile(L"CONIN$", GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, 0, 0);
