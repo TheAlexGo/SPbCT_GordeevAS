@@ -1,0 +1,7 @@
+﻿  dllmain.cpp
+D:\Ворд документы\Системное программирование\Лабы\laba20DLL\laba20DLL\dllmain.cpp(10,2): warning C4273: MathFuncs::MyMathFuncs::Perimetr: несовместимое связывание dll
+D:\Ворд документы\Системное программирование\Лабы\laba20DLL\laba20DLL\MathFuncsDll.h(14,34): message : см. предыдущее определение "Perimetr"
+D:\Ворд документы\Системное программирование\Лабы\laba20DLL\laba20DLL\dllmain.cpp(14,2): warning C4273: MathFuncs::MyMathFuncs::Ploshad: несовместимое связывание dll
+D:\Ворд документы\Системное программирование\Лабы\laba20DLL\laba20DLL\MathFuncsDll.h(16,34): message : см. предыдущее определение "Ploshad"
+     Создается библиотека D:\Ворд документы\Системное программирование\Лабы\laba20DLL\Debug\laba20DLL.lib и объект D:\Ворд документы\Системное программирование\Лабы\laba20DLL\Debug\laba20DLL.exp
+  laba20DLL.vcxproj -> D:\Ворд документы\Системное программирование\Лабы\laba20DLL\Debug\laba20DLL.dll
