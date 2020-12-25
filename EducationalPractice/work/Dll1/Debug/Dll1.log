@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  MyDLL.cpp
+D:\Практика Баталова\EducationalPractice\work\MyDLL\MyDLL\MyDLL.cpp(10,1): warning C4273: MyDLL::writeTo: несовместимое связывание dll
+D:\Практика Баталова\EducationalPractice\work\MyDLL\MyDLL\MyDLL.h(14,24): message : см. предыдущее определение "writeTo"
+D:\Практика Баталова\EducationalPractice\work\MyDLL\MyDLL\MyDLL.cpp(20,1): warning C4273: MyDLL::writeTo1: несовместимое связывание dll
+D:\Практика Баталова\EducationalPractice\work\MyDLL\MyDLL\MyDLL.h(15,24): message : см. предыдущее определение "writeTo1"
+D:\Практика Баталова\EducationalPractice\work\MyDLL\MyDLL\MyDLL.cpp(29,48): warning C4273: MyDLL::zap_vector: несовместимое связывание dll
+D:\Практика Баталова\EducationalPractice\work\MyDLL\MyDLL\MyDLL.h(13,37): message : см. предыдущее определение "zap_vector"
+  dllmain.cpp
+  Создание кода...
+     Создается библиотека D:\Практика Баталова\EducationalPractice\work\Debug\Dll1.lib и объект D:\Практика Баталова\EducationalPractice\work\Debug\Dll1.exp
+  Dll1.vcxproj -> D:\Практика Баталова\EducationalPractice\work\Debug\Dll1.dll

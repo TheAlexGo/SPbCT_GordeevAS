@@ -1,0 +1,9 @@
+﻿  MyDLL.cpp
+D:\Практика Баталова\work\MyDLL\MyDLL\MyDLL.cpp(10,1): warning C4273: MyDLL::writeTo: несовместимое связывание dll
+D:\Практика Баталова\work\MyDLL\MyDLL\MyDLL.h(14,24): message : см. предыдущее определение "writeTo"
+D:\Практика Баталова\work\MyDLL\MyDLL\MyDLL.cpp(17,1): warning C4273: MyDLL::writeTo1: несовместимое связывание dll
+D:\Практика Баталова\work\MyDLL\MyDLL\MyDLL.h(15,24): message : см. предыдущее определение "writeTo1"
+D:\Практика Баталова\work\MyDLL\MyDLL\MyDLL.cpp(23,48): warning C4273: MyDLL::zap_vector: несовместимое связывание dll
+D:\Практика Баталова\work\MyDLL\MyDLL\MyDLL.h(13,37): message : см. предыдущее определение "zap_vector"
+     Создается библиотека D:\Практика Баталова\work\MyDLL\Debug\MyDLL.lib и объект D:\Практика Баталова\work\MyDLL\Debug\MyDLL.exp
+  MyDLL.vcxproj -> D:\Практика Баталова\work\MyDLL\Debug\MyDLL.dll
