@@ -21,8 +21,8 @@
     <ClInclude Include="pch.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\MyDLL\MyDLL\MyDLL.h">
-      <Filter>Исходные файлы</Filter>
+    <ClInclude Include="MyDLL.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -32,7 +32,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\MyDLL\MyDLL\MyDLL.cpp">
+    <ClCompile Include="MyDLL.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

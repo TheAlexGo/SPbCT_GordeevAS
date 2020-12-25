@@ -1,2 +1,5 @@
-﻿  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+﻿  MyForm.cpp
+D:\Практика Баталова\EducationalPractice\work\work\MyForm.h(196,22): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Практика Баталова\EducationalPractice\work\work\MyForm.cpp(7,42): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
+  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   work.vcxproj -> D:\Практика Баталова\EducationalPractice\work\x64\Debug\work.exe

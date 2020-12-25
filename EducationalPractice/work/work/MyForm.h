@@ -4,8 +4,11 @@
 #include <fstream>
 #include <algorithm>
 #include <windows.h>
+#include <thread>
+#include <cstdlib>
 #include <locale.h>
-#include "../MyDLL/MyDLL/MyDLL.h"
+#include <stdio.h>
+#include "../Dll1/MyDLL.h"
 
 #pragma once
 
@@ -49,6 +52,10 @@ namespace work {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label8;
 
 
 	private:
@@ -69,6 +76,10 @@ namespace work {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -100,7 +111,7 @@ namespace work {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(12, 135);
+			this->button1->Location = System::Drawing::Point(67, 329);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(253, 46);
 			this->button1->TabIndex = 3;
@@ -117,11 +128,51 @@ namespace work {
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"Статус: ";
 			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(11, 112);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(135, 17);
+			this->label5->TabIndex = 5;
+			this->label5->Text = L"Исходные данные: ";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(12, 142);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(46, 17);
+			this->label6->TabIndex = 6;
+			this->label6->Text = L"label6";
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(250, 112);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(133, 17);
+			this->label7->TabIndex = 7;
+			this->label7->Text = L"Результат работы:";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(250, 142);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(46, 17);
+			this->label8->TabIndex = 8;
+			this->label8->Text = L"label8";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(275, 193);
+			this->ClientSize = System::Drawing::Size(438, 413);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label3);
@@ -153,20 +204,24 @@ namespace work {
 
 		std::vector<char> create_mas() {
 			std::ifstream f("output.txt"); // Осуществляется открытие файла
+			std::vector <char> text;
 			char c;
 			char final_mas[10][10] = {};
 			int i = 0;
 			int j = 0;
 			while (i != 9 || j != 10) {
 				f.get(c);
+				
 				if (c == '\n') {
 					j = 0;
 					i++;
+					
 					continue;
 				}
 				final_mas[i][j] = c;
 				j++;
 			}
+
 			int flag = 9;
 			for (int i = 0; i < 10; i++) {
 
@@ -176,31 +231,61 @@ namespace work {
 				flag--;
 			}
 			f.close(); // Закрытие файла
-			std::remove("output.txt");
+			remove("output.txt");
 
 			std::vector<char> final;
 
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
+					label8->Text += (Char)final_mas[i][j];
+					label8->Text += " ";
 					final.push_back(final_mas[i][j]);
 					final.push_back(' ');
 				}
 				final.push_back('\n');
+				label8->Text += (Char)'\n';
 			}
 			return final;
 		}
-
+		void del_file() {
+			remove("output.txt");
+		}
 #pragma endregion
+
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		std::remove("output.txt");
+		setlocale(LC_ALL, "Russian");
+		SetFileAttributes(L"input.txt", FILE_ATTRIBUTE_READONLY);
+		remove("output.txt");
 		set_time();
 		label4->Text = "Статус: Старт";
+		label6->Text = "";
+		label8->Text = "";
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		std::thread(del_file);
+		label6->Text = "";
+		label8->Text = "";
+		std::ifstream f("input.txt"); // Осуществляется открытие файла
+		char c;
+		int i = 0;
+		while (f.get(c)) {
+			if (i == 10) {
+				label6->Text += (Char)'\n';
+				label6->Text += (Char)c;
+				label6->Text += " ";
+				i = 1;
+			}
+			else {
+				label6->Text += (Char)c;
+				label6->Text += " ";
+				i++;
+			}
+			
+		}
+		f.close();
 
-		setlocale(LC_ALL, "Russian");
 
-		std::vector<char> vec1; // Объявление вектора
+		std::vector <char> vec1; // Объявление вектора
 		std::vector <char> vec2; // Объявление вектора
 		std::vector <char> vec3; // Объявление вектора
 		std::vector <char> vec4; // Объявление вектора
@@ -226,9 +311,13 @@ namespace work {
 		std::vector<char> final_vec = {};
 		final_vec = create_mas();
 
-		MyDLL::writeTo("output.txt", final_vec); // Вывод вектора в файл
 
+		MyDLL::writeTo("output.txt", final_vec); // Вывод вектора в файл
+		SetFileAttributes(L"output.txt", FILE_ATTRIBUTE_READONLY);
 		label4->Text = "Статус: Успешно!";
+
+
+		
 	}
 };
 }

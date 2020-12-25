@@ -151,13 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\MyDLL\MyDLL\MyDLL.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="MyDLL.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MyDLL\MyDLL\MyDLL.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="MyDLL.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
