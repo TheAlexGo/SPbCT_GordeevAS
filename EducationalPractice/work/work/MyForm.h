@@ -188,86 +188,89 @@ namespace work {
 
 		void set_time() {
 			// Установка текущий даты и времени
-			struct tm* c_date;
-			struct tm* c_time;
-			char Current_date[50];
-			char Current_time[50];
-			const time_t timer = time(NULL);
-			c_date = c_time = localtime(&timer);
-			strftime(Current_date, 50, "%d.%m.%Y", c_date);
-			strftime(Current_time, 50, "%H:%M:%S", c_time);
-			System::String^ strDate = gcnew System::String(Current_date);
-			System::String^ strTime = gcnew System::String(Current_time);
-			label2->Text += strDate;
-			label3->Text += strTime;
+			struct tm* c_date; // Объявление переменной даты
+			struct tm* c_time; // Объявление переменной времени
+			char Current_date[50]; // Выделение памяти для сегодняшней даты
+			char Current_time[50]; // Выделение памяти для сегодняшнего времени
+			const time_t timer = time(NULL); // Объявление таймера
+			c_date = c_time = localtime(&timer); // Получение настоящего времени
+			strftime(Current_date, 50, "%d.%m.%Y", c_date); // Заполнение даты
+			strftime(Current_time, 50, "%H:%M:%S", c_time); // Заполнение времени
+			System::String^ strDate = gcnew System::String(Current_date); // Конвертация даты в строку
+			System::String^ strTime = gcnew System::String(Current_time); // Конвертация времени в строку
+			label2->Text += strDate; // Вывод даты
+			label3->Text += strTime; // Вывод времени
 		}
 
 		std::vector<char> create_mas() {
-			std::ifstream f("output.txt"); // Осуществляется открытие файла
-			std::vector <char> text;
-			char c;
-			char final_mas[10][10] = {};
-			int i = 0;
-			int j = 0;
+			// Функция создания массива
+			std::ifstream f("output.txt"); // Открытие файла
+			char c; // Переменная символов - char
+			char final_mas[10][10] = {}; // Выделение памяти для двумерного массива и удаление мусора
+			int i = 0; // Строки
+			int j = 0; // Колонны
+			// Заполнение массива
 			while (i != 9 || j != 10) {
 				f.get(c);
-				
 				if (c == '\n') {
 					j = 0;
 					i++;
-					
 					continue;
 				}
 				final_mas[i][j] = c;
 				j++;
 			}
+			// Конец заполнения массива
 
-			int flag = 9;
+			// Замена диагонали на звёздочки
+			int flag = 9; // Флаг для получения обратной диагонали
 			for (int i = 0; i < 10; i++) {
-
 				for (int j = 9; j >= 0; j--)
 					if (j == flag)
-						final_mas[i][j] = '*';
-				flag--;
+						final_mas[i][j] = '*'; // Замена диагонали на звёздочки
+				flag--; // Уменьшение значения флага
 			}
 			f.close(); // Закрытие файла
 			remove("output.txt");
+			std::vector<char> final; // Объявление финального ветора
 
-			std::vector<char> final;
 
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					label8->Text += (Char)final_mas[i][j];
+					label8->Text += (Char)final_mas[i][j]; // Вывод результата
 					label8->Text += " ";
-					final.push_back(final_mas[i][j]);
+					final.push_back(final_mas[i][j]); // Заполнение финального вектора
 					final.push_back(' ');
 				}
-				final.push_back('\n');
-				label8->Text += (Char)'\n';
+				label8->Text += (Char)'\n'; // Перенос на новую строку в программе
+				final.push_back('\n'); // Перенос на новую строку в файле
 			}
-			return final;
+			return final; // Возвращение финального вектора
 		}
-		void del_file() {
-			remove("output.txt");
+		void del_file() { // Функция для потока
+			remove("output.txt"); // Удаление файла 
 		}
 #pragma endregion
 
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		setlocale(LC_ALL, "Russian");
-		SetFileAttributes(L"input.txt", FILE_ATTRIBUTE_READONLY);
-		remove("output.txt");
+		// Выполняется при первой загрузке формы
+		setlocale(LC_ALL, "Russian"); // Объявление поддержки русского языка
+		SetFileAttributes(L"input.txt", FILE_ATTRIBUTE_READONLY); // Устанавливает для файла атрибут: "Только для чтения"
 		set_time();
-		label4->Text = "Статус: Старт";
-		label6->Text = "";
-		label8->Text = "";
+		remove("output.txt"); // Удаление файла, если он есть
+		label4->Text = "Статус: Старт"; // Установка статуса начала
+		label6->Text = ""; // Очистка лейбла
+		label8->Text = ""; // Очистка лейбла
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		std::thread(del_file);
-		label6->Text = "";
-		label8->Text = "";
-		std::ifstream f("input.txt"); // Осуществляется открытие файла
-		char c;
-		int i = 0;
+		//std::thread del(del_file); // Вызов потока
+		label6->Text = ""; // Очистка лейбла
+		label8->Text = ""; // Очистка лейбла
+		char c; // Переменная символов - char
+		int i = 0; // Столбцы
+
+		// Вывод исходных данных
+		std::ifstream f("input.txt"); // Открытие файла
 		while (f.get(c)) {
 			if (i == 10) {
 				label6->Text += (Char)'\n';
@@ -282,7 +285,7 @@ namespace work {
 			}
 			
 		}
-		f.close();
+		f.close(); // Закрытие файла
 
 
 		std::vector <char> vec1; // Объявление вектора
@@ -297,24 +300,24 @@ namespace work {
 		std::vector <char> vec10; // Объявление вектора
 
 
-		vec1 = MyDLL::zap_vector(0);
-		vec2 = MyDLL::zap_vector(10);
-		vec3 = MyDLL::zap_vector(20);
-		vec4 = MyDLL::zap_vector(30);
-		vec5 = MyDLL::zap_vector(40);
-		vec6 = MyDLL::zap_vector(50);
-		vec7 = MyDLL::zap_vector(60);
-		vec8 = MyDLL::zap_vector(70);
-		vec9 = MyDLL::zap_vector(80);
-		vec10 = MyDLL::zap_vector(90);
+		vec1 = MyDLL::zap_vector(0); // Заполнение вектора
+		vec2 = MyDLL::zap_vector(10); // Заполнение вектора
+		vec3 = MyDLL::zap_vector(20); // Заполнение вектора
+		vec4 = MyDLL::zap_vector(30); // Заполнение вектора
+		vec5 = MyDLL::zap_vector(40); // Заполнение вектора
+		vec6 = MyDLL::zap_vector(50); // Заполнение вектора
+		vec7 = MyDLL::zap_vector(60); // Заполнение вектора
+		vec8 = MyDLL::zap_vector(70); // Заполнение вектора
+		vec9 = MyDLL::zap_vector(80); // Заполнение вектора
+		vec10 = MyDLL::zap_vector(90); // Заполнение вектора
 
-		std::vector<char> final_vec = {};
-		final_vec = create_mas();
+		std::vector<char> final_vec = {}; // Объявление финального массива и очистка от мусора
+		final_vec = create_mas(); // Заполнение финального массива
 
 
 		MyDLL::writeTo("output.txt", final_vec); // Вывод вектора в файл
-		SetFileAttributes(L"output.txt", FILE_ATTRIBUTE_READONLY);
-		label4->Text = "Статус: Успешно!";
+		SetFileAttributes(L"output.txt", FILE_ATTRIBUTE_READONLY); // Установка атрбитука "Только для чтения"
+		label4->Text = "Статус: Успешно!"; // Установка статуса "Успешно!"
 
 
 		

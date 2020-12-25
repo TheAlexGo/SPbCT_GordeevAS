@@ -7,34 +7,32 @@
 #include <algorithm>
 
 void MyDLL::writeTo(const std::string& filepath, const  std::vector<char>& data)
-{
-	int cp = GetConsoleCP();
-	std::ofstream filestream(filepath, std::ios::app);
-	copy(data.begin(), data.end(), std::ostream_iterator<char>(filestream, ""));
-	filestream.close();
+{ // Функция записи вектора в файл
+	std::ofstream filestream(filepath, std::ios::app); // Открытие файла
+	copy(data.begin(), data.end(), std::ostream_iterator<char>(filestream, "")); // Запись в файл 
+	filestream.close(); // Закрытие файла
 }
 
 void MyDLL::writeTo1(const std::string& filepath, const  std::vector<char>& data)
 {
-	int cp = GetConsoleCP();
-	std::ofstream filestream(filepath, std::ios::app);
-	filestream << "\n";
-	filestream.close();
+	std::ofstream filestream(filepath, std::ios::app); // Открытие файла
+	filestream << "\n"; // Перенос на новую строку
+	filestream.close(); // Закрытие файла
 }
 
-std::vector<char> MyDLL::zap_vector(int value) {
-	std::vector<char> kit;
-	std::ifstream is("input.txt");
-	is.seekg(value, std::ios::beg); 
-	char c;
-	int i = 0;
+std::vector<char> MyDLL::zap_vector(int value) { // Заполнение вектора
+	std::vector<char> kit; // Объяевлеине вспомогательного вектора
+	std::ifstream is("input.txt"); // Открытие файла 
+	is.seekg(value, std::ios::beg); // Проверка начальной позиции отсчёта
+	char c; // Переменная символа - char
+	int i = 0; // Столбцы
 	while (is.get(c) && i < 10) { 
 		i++;
-		kit.push_back(c);
+		kit.push_back(c); // Заполнение вектора
 	}
-	is.close();
-	sort(kit.begin(), kit.end());
-	writeTo("output.txt", kit);
-	writeTo1("output.txt", kit);
-	return kit;
+	is.close(); // Закрытие файла
+	sort(kit.begin(), kit.end()); // Сортировка вектора по алфавиту (по возрастанию)
+	MyDLL::writeTo("output.txt", kit); // Запись в файл
+	MyDLL::writeTo1("output.txt", kit); // Добавление отступа
+	return kit; // Вывод вектора
 }

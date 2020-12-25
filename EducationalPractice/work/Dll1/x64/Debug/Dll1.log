@@ -1,9 +1,8 @@
 ﻿  MyDLL.cpp
 D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.cpp(10,1): warning C4273: MyDLL::writeTo: несовместимое связывание dll
-D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.h(14,24): message : см. предыдущее определение "writeTo"
-D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.cpp(18,1): warning C4273: MyDLL::writeTo1: несовместимое связывание dll
-D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.h(15,24): message : см. предыдущее определение "writeTo1"
-D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.cpp(25,48): warning C4273: MyDLL::zap_vector: несовместимое связывание dll
-D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.h(13,37): message : см. предыдущее определение "zap_vector"
-     Создается библиотека D:\Практика Баталова\EducationalPractice\work\x64\Debug\Dll1.lib и объект D:\Практика Баталова\EducationalPractice\work\x64\Debug\Dll1.exp
+D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.h(15,24): message : см. предыдущее определение "writeTo"
+D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.cpp(17,1): warning C4273: MyDLL::writeTo1: несовместимое связывание dll
+D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.h(16,24): message : см. предыдущее определение "writeTo1"
+D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.cpp(23,48): warning C4273: MyDLL::zap_vector: несовместимое связывание dll
+D:\Практика Баталова\EducationalPractice\work\Dll1\MyDLL.h(14,37): message : см. предыдущее определение "zap_vector"
   Dll1.vcxproj -> D:\Практика Баталова\EducationalPractice\work\x64\Debug\Dll1.dll
